@@ -65,4 +65,8 @@ tags
 
 ## Local env
 local.d
+.gopath
 .env
+
+## Jetbrains
+.idea/
