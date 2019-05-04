@@ -6,7 +6,19 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SubmitLink(c *gin.Context) {
+type submitLinkRequest struct {
+	Link string `json:"link"`
+}
 
-	c.JSON(http.StatusCreated, gin.H{"ok": true})
+// SubmitLink => Receive POSTed link data.
+func SubmitLink(c *gin.Context) {
+	var request submitLinkRequest
+
+	err := c.ShouldBind(&request)
+	if nil != err {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request."})
+	}
+
+	var link = request.Link
+	c.JSON(http.StatusCreated, gin.H{"link": link})
 }

@@ -71,5 +71,5 @@ func main() {
 	r := setupRouter()
 
 	bind := fmt.Sprintf("%s:%d", cfg.Bind, cfg.Port)
-	_ := r.Run(bind)
+	r.Run(bind)
 }

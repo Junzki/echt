@@ -2,17 +2,18 @@ package config
 
 import (
 	"echt/handlers"
+
 	"github.com/gin-gonic/gin"
 )
 
-// Route collects defined routes.
+// Route => Struct collects defined routes.
 type Route struct {
 	Method  string
 	Route   string
 	Handler gin.HandlerFunc
 }
 
+// Routes => Exported URL patterns.
 var Routes = [...]Route{
-	{"GET", "/submit", handlers.SubmitLink},
+	{"POST", "/submit", handlers.SubmitLink},
 }
-
