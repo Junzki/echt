@@ -31,6 +31,10 @@ func setupRouter() *gin.Engine {
 		}
 	})
 
+	for _, route := range config.Routes {
+		r.Handle(route.Method, route.Route, route.Handler)
+	}
+
 	// Authorized group (uses gin.BasicAuth() middleware)
 	// Same than:
 	// authorized := r.Group("/")
@@ -67,5 +71,5 @@ func main() {
 	r := setupRouter()
 
 	bind := fmt.Sprintf("%s:%d", cfg.Bind, cfg.Port)
-	r.Run(bind)
+	_ := r.Run(bind)
 }
