@@ -2,10 +2,14 @@ package main
 
 import (
 	"echt/config"
+	"echt/handlers"
+	"echt/models"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 var db = make(map[string]string)
@@ -31,7 +35,7 @@ func setupRouter() *gin.Engine {
 		}
 	})
 
-	for _, route := range config.Routes {
+	for _, route := range handlers.Routes {
 		r.Handle(route.Method, route.Route, route.Handler)
 	}
 
@@ -65,8 +69,16 @@ func setupRouter() *gin.Engine {
 }
 
 func main() {
+	// Load .env
+	_ = godotenv.Load()
+
 	cfg := config.GetSettings()
 	cfg.LoadEnv()
+
+	err := models.InitDbConn(&cfg.Database)
+	if nil != err {
+		log.Fatal(err)
+	}
 
 	r := setupRouter()
 

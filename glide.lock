@@ -1,10 +1,6 @@
-hash: 1c32f376045f32c8b323381ad27ae5dbafabad335d48517ff7d1c35dd4c6682c
-updated: 2019-04-30T13:15:46.429285+08:00
+hash: bc66eda4187d00a1ecf3094f8f453849debb6684ed8bf85f1036058ab5ce3f69
+updated: 2019-05-05T13:34:44.590419+08:00
 imports:
-- name: github.com/caarlos0/env
-  version: 1928784a95f4da2c00b8b82d6d727dc31c101fa5
-  subpackages:
-  - parsers
 - name: github.com/gin-contrib/sse
   version: 22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae
 - name: github.com/gin-gonic/gin
@@ -17,14 +13,28 @@ imports:
   version: 7716a980bceefe9a0213654823d9ea62d23b87a2
   subpackages:
   - proto
+- name: github.com/jinzhu/gorm
+  version: 29cb2a42d2a41e5ae449435e1c9277d47115775c
+  subpackages:
+  - dialects/sqlite
+- name: github.com/jinzhu/inflection
+  version: 04140366298a54a039076d798123ffa108fff46c
+- name: github.com/joho/godotenv
+  version: 23d116af351c84513e1946b527c88823e476be13
 - name: github.com/json-iterator/go
   version: 2433035e513208b0f7bd5b50d0aecd889b2c1ff8
 - name: github.com/mattn/go-isatty
   version: 3fb116b820352b7f0c281308a4d6250c22d94e27
+- name: github.com/mattn/go-sqlite3
+  version: c7c4067b79cc51e6dfdcef5c702e74b1e0fa7c75
 - name: github.com/modern-go/concurrent
   version: bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94
 - name: github.com/modern-go/reflect2
   version: 94122c33edd36123c84d5368cfb2b69df93a0ec8
+- name: github.com/Netflix/go-env
+  version: 1e80ef5003ef234880e1dbf1436a5c84f917cfcf
+- name: github.com/pkg/errors
+  version: c059e472caf75dbe73903f6521a20abac245b17f
 - name: github.com/SermoDigital/jose
   version: f6df55f235c24f236d11dbcf665249a59ac2021f
 - name: github.com/ugorji/go

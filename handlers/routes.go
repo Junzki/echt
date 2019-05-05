@@ -1,12 +1,10 @@
-package config
+package handlers
 
 import (
-	"echt/handlers"
-
 	"github.com/gin-gonic/gin"
 )
 
-// Route => Struct collects defined routes.
+// Route => Collects defined routes.
 type Route struct {
 	Method  string
 	Route   string
@@ -15,5 +13,6 @@ type Route struct {
 
 // Routes => Exported URL patterns.
 var Routes = [...]Route{
-	{"POST", "/submit", handlers.SubmitLink},
+	{"POST", "/submit", SubmitLink},
+	{"GET", "/submitted", ListSubmitted},
 }

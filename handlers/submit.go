@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"echt/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -20,5 +21,18 @@ func SubmitLink(c *gin.Context) {
 	}
 
 	var link = request.Link
-	c.JSON(http.StatusCreated, gin.H{"link": link})
+	record := models.Content{Link: link}
+
+	models.GetDbConn().Create(&record)
+
+	c.JSON(http.StatusCreated, gin.H{"ok": true})
+}
+
+
+func ListSubmitted(c *gin.Context) {
+	var submitted []models.Content
+
+	models.GetDbConn().Find(&submitted)
+
+	c.JSON(http.StatusOK, submitted)
 }
