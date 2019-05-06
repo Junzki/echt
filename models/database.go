@@ -2,7 +2,6 @@ package models
 
 import (
 	"echt/config"
-	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"runtime"
