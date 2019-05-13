@@ -1,6 +1,7 @@
-package config
+package core
 
 import (
+	"fmt"
 	"github.com/Netflix/go-env"
 	"github.com/pkg/errors"
 	"log"
@@ -40,22 +41,28 @@ func (this *Config) LoadEnv() {
 
 
 // DatabaseArgs detects and returns database type and connection arguments.
-func (this *DatabaseArgs) Args() (string, string, error) {
-	if "" == this.Type {
+func (a *DatabaseArgs) Args() (string, string, error) {
+	if "" == a.Type {
 		return "", "", errors.New("Database configuration not specified.")
 	}
 
-	dbType := strings.ToLower(this.Type)
+	dbType := strings.ToLower(a.Type)
 	if strings.HasPrefix(dbType, "sqlite") {
 		dbType = "sqlite3"
 	}
 
 	switch dbType {
 	case "sqlite3":
-		return dbType, this.Name, nil
+		return dbType, a.Name, nil
+	case "postgres":
+		return dbType, a.getUrl(), nil
 	default:
 		return "", "", errors.New("Cannot detect database type.")
 	}
+}
+
+func (a *DatabaseArgs) getUrl() string {
+	return fmt.Sprintf("%s://%s:%s@%s:%s/%s?sslmode=disable", a.Type, a.User, a.Password, a.Host, a.Port, a.Name)
 }
 
 var settings = &Config{

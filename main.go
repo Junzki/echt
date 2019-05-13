@@ -1,9 +1,8 @@
 package main
 
 import (
-	"echt/config"
+	"echt/core"
 	"echt/handlers"
-	"echt/models"
 	"fmt"
 	"log"
 	"net/http"
@@ -72,10 +71,10 @@ func main() {
 	// Load .env
 	_ = godotenv.Load()
 
-	cfg := config.GetSettings()
+	cfg := core.GetSettings()
 	cfg.LoadEnv()
 
-	err := models.InitDbConn(&cfg.Database)
+	err := core.InitDbConn(&cfg.Database)
 	if nil != err {
 		log.Fatal(err)
 	}

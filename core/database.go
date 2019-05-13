@@ -1,8 +1,8 @@
-package models
+package core
 
 import (
-	"echt/config"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"runtime"
 )
@@ -11,7 +11,7 @@ import (
 var database *gorm.DB
 
 
-func InitDbConn(dbCfg *config.DatabaseArgs) error {
+func InitDbConn(dbCfg *DatabaseArgs) error {
 	dbType, dbArgs, err := dbCfg.Args()
 	if nil != err {
 		return err
@@ -25,8 +25,6 @@ func InitDbConn(dbCfg *config.DatabaseArgs) error {
 	database.SingularTable(true)
 	database.DB().SetMaxOpenConns(655360)
 	database.DB().SetMaxIdleConns(20 * runtime.NumCPU())
-
-	database.AutoMigrate(&Content{})
 
 	return nil
 }
